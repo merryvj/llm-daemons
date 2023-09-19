@@ -4,12 +4,15 @@ import { OpenAI } from "langchain/llms/openai";
 import { Ollama } from "langchain/llms/ollama";
 
 import { PromptTemplate } from "langchain/prompts";
-import { StructuredOutputParser } from "langchain/output_parsers";
+import { StructuredOutputParser, OutputFixingParser } from "langchain/output_parsers";
+
+const model = new OpenAI({temperature: 0,
+    openAIApiKey: "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",});
 
 const parser = StructuredOutputParser.fromZodSchema(
     z.object({
-      line: z.string().describe("section of text that should be edited"),
-      suggestions: z.string().describe("explain potential fixes to the section"),
+      line: z.string().describe("a selected sentence or phrase or word from the provided text that could be improved"),
+      suggestions: z.string().describe("explain potential fixes to the selected"),
     })
   );
 
@@ -24,34 +27,38 @@ const parser = StructuredOutputParser.fromZodSchema(
   
 
   
-const useAI = () => {
+const useAI = (text) => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState("boop");
 
     useEffect(() => {
+        if (loading) return;
         setLoading(true);
 
         const callModel = async() => {
-            const model = new OpenAI({ temperature: 0, 
-                openAIApiKey: "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",});
-              
-            // const model = new Ollama({
-            //     baseUrl: "http://localhost:11434", // Default value
-            //     model: "llama2", // Default value
-            //   });
-
               const input = await prompt.format({
-                text: "Went to the Kernel magazine launch today. First one there! Met nice people, talked about the difficulties of text messaging as a communication medium...with confusion and frustration from the different levels of intimacy all expected to take place in chat form. Deblina was super nice as a greeter and I felt more comfortable. Maybe I should have been more enthusiastic to say hi to Omar?",
+                text: text
               });
             const response = await model.call(input);
+            console.log(response);
 
-            const parsed = await parser.parse(response);
-            setData(parsed);
+            try {
+                const output = await parser.parse(response);
+                setData(output);
+            } catch (e) {
+                const fixParser = OutputFixingParser.fromLLM(
+                    new OpenAI({ temperature: 0}),
+                    parser
+                )
+
+                const fix = await fixParser.parse(response);
+                setData(fix);
+            }
         }
 
         callModel();
 
-    }, [])
+    }, [text])
 
     return [data, loading]
 }

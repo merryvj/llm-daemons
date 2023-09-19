@@ -1,19 +1,21 @@
 import React, {useEffect, useState} from 'react'
 import styles from './editor.module.css';
 import useAI from '../../hooks/useAI';
+import { escapeRegExp } from 'lodash';
 
 export default function Editor() {
-  const [edits, loading] = useAI();
-  const [text, setText] = useState("Went to the Kernel magazine launch today. First one there! Met nice people, talked about the difficulties of text messaging as a communication medium...with confusion and frustration from the different levels of intimacy all expected to take place in chat form. Deblina was super nice as a greeter and I felt more comfortable. Maybe I should have been more enthusiastic to say hi to Omar? ");
+  const [text, setText] = useState("Those interested in utilizing their Samaritans experience toward this end must enter a volunteer training class in the semester PRIOR to the course which they anticipate applying their hotline experience. Requirements vary by course, program and institution and it is the responsibility of each volunteer to determine how their Samaritans experience will fit in the context of their individual circumstance. Please note, supervision of accrued hours are for the purpose of satisfying individual courses and shorter-term experiences. Samaritans does not provide clinical supervision for practitioner licensing.");
+  const [edits, loading] = useAI(text);
 
   const findMatchingSection = (sentence) => {
-    const section = text.match(new RegExp(`\\b${sentence}\\b`, "i"));
+    const escapedSentence = escapeRegExp(sentence);
+    const section = text.match(new RegExp(`${escapedSentence}`, "i"));
     return section ? section[0] : null;
   }
 
   useEffect(() => {
-    const matchingSection = findMatchingSection(edits.line);
-
+    const matchingSection = findMatchingSection(String(edits.line));
+    console.log(matchingSection);
     // // Get the position and bounding box of the matching section
     // const position = matchingSection ? text.indexOf(matchingSection) : -1;
     // const boundingBox = matchingSection ? {
@@ -23,7 +25,6 @@ export default function Editor() {
 
     // console.log("Position:", position);
     // console.log("Bounding Box:", boundingBox);
-
     const editedText = matchingSection ? text.replace(matchingSection, `<mark>${matchingSection}</mark>`) : text;
     setText(editedText);
 
