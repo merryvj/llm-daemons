@@ -3,10 +3,11 @@
     width: 40rem;
     background-color: white;
     border-radius: 8px;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .text {
     font-size: 1rem;
+    line-height: 160%;
 }
 
