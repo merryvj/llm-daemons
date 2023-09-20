@@ -7,7 +7,8 @@ import { PromptTemplate } from "langchain/prompts";
 import { StructuredOutputParser, OutputFixingParser } from "langchain/output_parsers";
 
 const model = new OpenAI({temperature: 0,
-    openAIApiKey: "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",});
+    openAIApiKey: "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",
+    cache: true});
 
 const parser = StructuredOutputParser.fromZodSchema(
     z.object({
@@ -20,7 +21,7 @@ const parser = StructuredOutputParser.fromZodSchema(
 
   const prompt = new PromptTemplate({
     template:
-      "Analyze the following text as if you are a writing editor. Follow the intrusctions and format your response to match the format instructions, no matter what! \n{format_instructions}\n{text}",
+      "Please review and edit the following text for clarity, grammar, punctuation, and style. Follow the intrusctions and format your response to match the format instructions, no matter what! \n{format_instructions}\n{text}",
     inputVariables: ["text"],
     partialVariables: { format_instructions: formatInstructions },
   });
@@ -47,8 +48,9 @@ const useAI = (text) => {
                 setData(output);
             } catch (e) {
                 const fixParser = OutputFixingParser.fromLLM(
-                    new OpenAI({ temperature: 0}),
-                    parser
+                    new OpenAI({temperature: 0,
+                        openAIApiKey: "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",
+                        cache: true})
                 )
 
                 const fix = await fixParser.parse(response);

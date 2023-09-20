@@ -4,5 +4,27 @@
     padding: 1rem;
     border: solid 1px grey;
     border-radius: 8px;
-    visibility: hidden;
 }
+
+.visible,
+.hidden {
+  overflow: hidden;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.2s, opacity 0.2s;
+}
+
+.hidden > div {
+  margin-top: -10000px;
+  transition: margin-top 0s 1s;
+}
+  

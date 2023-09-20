@@ -5,13 +5,11 @@ import { escapeRegExp } from 'lodash';
 import Modal from '../Modal/Modal';
 
 export default function Editor() {
-  const [text, setText] = useState("Those interested in utilizing their Samaritans experience toward this end must enter a volunteer training class in the semester PRIOR to the course which they anticipate applying their hotline experience. Requirements vary by course, program and institution and it is the responsibility of each volunteer to determine how their Samaritans experience will fit in the context of their individual circumstance. Please note, supervision of accrued hours are for the purpose of satisfying individual courses and shorter-term experiences. Samaritans does not provide clinical supervision for practitioner licensing.");
+  const [text, setText] = useState("For the love of buttery animations, modifying only transform and opacity goes a long way! Animating layout properties costs the browser a big recalculation to render changes. Modifying visual properties (e.g.'box-shadow') that trigger repaints can also get expensive.");
   const [textParts, setTextParts] = useState([]);
   const [edits, loading] = useAI(text);
   const [isHovered, setIsHovered] = useState(false);
-
-
-
+  
   const findMatchingSection = (sentence) => {
     const escapedSentence = escapeRegExp(sentence);
     const section = text.match(new RegExp(`${escapedSentence}`, "i"));
@@ -28,7 +26,6 @@ export default function Editor() {
       <React.Fragment key={i}>{part}
         <mark 
           onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
       >{matchingSection}</mark>
       </React.Fragment> : 
       part
@@ -41,7 +38,7 @@ export default function Editor() {
   return (
     <div className={styles.wrapper}>
       <p className={styles.text}>{loading ? textParts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>) : text}</p>
-      <Modal suggestion={edits.suggestions} visible={isHovered}/>
+      <Modal suggestion={edits.suggestions} visible={isHovered} onAction={() => setIsHovered(false)}/>
     </div>
   )
 }
