@@ -42,7 +42,6 @@ const useAI = (text, activeDaemon) => {
                 style: activeDaemon.description
               });
             const response = await model.call(input);
-            console.log(response);
 
             try {
                 const output = await parser.parse(response);

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import styles from './modal.module.css';
 
-export default function Modal({suggestion, visible, onAction}) {
+export default function Modal({data, visible, onAction}) {
 
     const [isVisible, setIsVisible] = useState(visible);
+    const [suggestion, setSuggestion] = useState("");
     
     useEffect(() => {
-        console.log("ooop")
+        setSuggestion(data.suggestions);
+    }, [data])
+
+    useEffect(() => {
         setIsVisible(visible);
     }, [visible])
 
