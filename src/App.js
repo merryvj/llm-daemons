@@ -5,11 +5,8 @@ import Daemons from './components/Daemons/Daemons';
 
 function App() {
   return (
-    <div className="App">
-      <Editor/>
-      <Daemons/>
-    </div>
-  );
+    <Editor/>
+  )
 }
 
 export default App;

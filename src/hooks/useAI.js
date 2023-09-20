@@ -12,8 +12,8 @@ const model = new OpenAI({temperature: 0,
 
 const parser = StructuredOutputParser.fromZodSchema(
     z.object({
-      line: z.string().describe("a selected sentence or phrase or word from the provided text that could be improved"),
-      suggestions: z.string().describe("explain potential fixes to the selected"),
+      line: z.string().describe("a sentence or phrase or word from the provided text that can be improved or is interesting"),
+      suggestions: z.string().describe("explain why you responded in that way"),
     })
   );
 
@@ -21,24 +21,25 @@ const parser = StructuredOutputParser.fromZodSchema(
 
   const prompt = new PromptTemplate({
     template:
-      "Please review and edit the following text for clarity, grammar, punctuation, and style. Follow the intrusctions and format your response to match the format instructions, no matter what! \n{format_instructions}\n{text}",
-    inputVariables: ["text"],
+      "Please respond to the following text as if you are {style}. Follow the intrusctions and format your response to match the format instructions, no matter what! \n{format_instructions}\n{text}",
+    inputVariables: ["text", "style"],
     partialVariables: { format_instructions: formatInstructions },
   });
   
 
   
-const useAI = (text) => {
+const useAI = (text, activeDaemon) => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState("boop");
 
     useEffect(() => {
-        if (loading) return;
+        if (loading | !activeDaemon) return;
         setLoading(true);
 
         const callModel = async() => {
               const input = await prompt.format({
-                text: text
+                text: text,
+                style: activeDaemon.description
               });
             const response = await model.call(input);
             console.log(response);
@@ -60,7 +61,7 @@ const useAI = (text) => {
 
         callModel();
 
-    }, [text])
+    }, [text, activeDaemon])
 
     return [data, loading]
 }
