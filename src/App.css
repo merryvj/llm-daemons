@@ -16,7 +16,7 @@
 
 mark {
   background-color: rgba(var(--markColor), 0.25);
-  transition: 0.2s;
+  transition: 0.4s;
 }
 
 mark:hover{

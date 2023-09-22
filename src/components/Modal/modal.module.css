@@ -2,17 +2,18 @@
 .modal {
     width: 20rem;
     padding: 1rem;
-    border: solid 1px var(--color);
+    border: solid 1.5px var(--color);
     border-radius: 8px;
     background-color: white;
     box-shadow: var(--box-shadow-sm);
-    color: var(--color);
-    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .visible,
 .hidden {
-  overflow: hidden;
+
 }
 
 .visible {
@@ -34,8 +35,27 @@
 
 .subtitle {
     font-size: 16px;
+    color: var(--color);
+    font-weight: bold;
 }
 
+.suggestion {
+    
+}
+
+.actions > button {
+    padding: 6px 12px;
+    border: solid 1.5px #E9E9E7;
+    background-color: white;
+    border-radius: 4px;
+    color: #8E8F94;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.actions > button:hover {
+    background-color: #e9e9e72f;
+}
 /* .subtitle:before {
     content: "";
     position: absolute;
@@ -46,3 +66,4 @@
     width: 10px;
     background-color: var(--color);
 } */
+

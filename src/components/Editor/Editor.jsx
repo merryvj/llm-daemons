@@ -7,7 +7,7 @@ import Daemons from '../Daemons/Daemons';
 
 
 export default function Editor() {
-  const [text, setText] = useState("Digital pets are these really cool virtual creatures that you can take care of, almost like a game but not exactly. You get to feed them, play with them, and they do all sorts of neat things on your computer or phone. It's all made up of pixels and stuff, and it's just a super fun way to pass the time and have a little digital companion to keep you company.Digital pets are these really cool virtual creatures that you can take care of, almost like a game but not exactly. You get to feed them, play with them, and they do all sorts of neat things on your computer or phone. It's all made up of pixels and stuff, and it's just a super fun way to pass the time and have a little digital companion to keep you company.Digital pets are these really cool virtual creatures that you can take care of, almost like a game but not exactly. You get to feed them, play with them, and they do all sorts of neat things on your computer or phone. It's all made up of pixels and stuff, and it's just a super fun way to pass the time and have a little digital companion to keep you company.Digital pets are these really cool virtual creatures that you can take care of, almost like a game but not exactly. You get to feed them, play with them, and they do all sorts of neat things on your computer or phone. It's all made up of pixels and stuff, and it's just a super fun way to pass the time and have a little digital companion to keep you company.");
+  const [text, setText] = useState("");
   const [textParts, setTextParts] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
   const [activeDaemon, setActiveDaemon] = useState(null);
@@ -40,11 +40,17 @@ export default function Editor() {
   }, [edits])
 
 
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const plain = e.clipboardData.getData('text/plain');
+    setText(plain);
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-      <p className={styles.text}>{loading ? textParts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>) : text}</p>
-      {activeDaemon && <Modal data={edits} visible={isHovered} onAction={() => setIsHovered(false)} markRef={markRef} color={activeDaemon.color}/>
+      <div contentEditable='true' className={styles.text} onChange={e => setText(e.target.value)} onPaste={handlePaste}> {loading ? textParts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>) : text}</div>
+      {activeDaemon && <Modal data={edits} visible={isHovered} onAction={() => setIsHovered(false)} markRef={markRef} daemon={activeDaemon}/>
 }
     </div>
     <Daemons onSelect={setActiveDaemon}></Daemons>
