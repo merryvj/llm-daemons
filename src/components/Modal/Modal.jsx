@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './modal.module.css';
 
-export default function Modal({data, visible, onAction}) {
+export default function Modal({data, visible, onAction, markRef}) {
 
     const [isVisible, setIsVisible] = useState(visible);
     const [suggestion, setSuggestion] = useState("");
@@ -14,12 +14,28 @@ export default function Modal({data, visible, onAction}) {
         setIsVisible(visible);
     }, [visible])
 
+    const modalStyle = {
+        top: 0,
+        left: 0,
+        position: 'absolute',
+        transform: 'translate(40%, 50%)'
+    };
+
+    if (markRef.current) {
+        console.log(markRef.current.getBoundingClientRect())
+        const markPosition = markRef.current.getBoundingClientRect();
+        modalStyle.top = markPosition.top + 'px';
+        modalStyle.left = markPosition.left + 'px';
+    }
+
   return (
-    <div className={isVisible ? styles.visible : styles.hidden}>
-        <div className={styles.wrapper}>
+    <div style={modalStyle}>
+        <div className={isVisible ? styles.visible : styles.hidden}>
+        <div className={styles.modal}>
             <p>{suggestion}</p>
             <button onClick={() => onAction()}>Ok</button>
         </div>
+    </div>
     </div>
   )
 }

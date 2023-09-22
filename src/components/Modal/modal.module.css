@@ -1,9 +1,13 @@
 .wrapper {
-    position: absolute;
+    position: absolute,
+}
+
+.modal {
     width: 20rem;
     padding: 1rem;
     border: solid 1px grey;
     border-radius: 8px;
+    background-color: white;
 }
 
 .visible,
