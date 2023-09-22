@@ -31,7 +31,7 @@ export default function Modal({data, visible, onAction, markRef, color}) {
   return (
     <div style={modalStyle}>
         <div className={isVisible ? styles.visible : styles.hidden}>
-        <div className={styles.modal} style={{"--color": color}}>
+        <div className={styles.modal} style={{"--color": `rgb(${color})`}}>
             <h3 className={styles.subtitle}>{suggestion}</h3>
             <button onClick={() => onAction()}>Ok</button>
         </div>

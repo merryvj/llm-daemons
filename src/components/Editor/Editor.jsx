@@ -29,7 +29,8 @@ export default function Editor() {
         <mark 
           ref={markRef}
           onMouseEnter={() => setIsHovered(true)}
-          style={{backgroundColor: activeDaemon.color}}
+          style={{'--markColor': activeDaemon.color}}
+          // style={{backgroundColor: `rgb(${activeDaemon.color}, 0.3)`}}
       >{matchingSection}</mark>
       </React.Fragment> : 
       part

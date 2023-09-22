@@ -9,3 +9,12 @@
   justify-content: center;
   background-color: #fafafa;
 }
+
+mark {
+  background-color: rgba(var(--markColor), 0.25);
+  transition: 0.2s;
+}
+
+mark:hover{
+  background-color: rgba(var(--markColor), 0.4);
+}
