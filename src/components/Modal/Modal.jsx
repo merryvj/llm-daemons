@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './modal.module.css';
 
-export default function Modal({data, visible, onAction, markRef}) {
+export default function Modal({data, visible, onAction, markRef, color}) {
 
     const [isVisible, setIsVisible] = useState(visible);
     const [suggestion, setSuggestion] = useState("");
@@ -31,8 +31,8 @@ export default function Modal({data, visible, onAction, markRef}) {
   return (
     <div style={modalStyle}>
         <div className={isVisible ? styles.visible : styles.hidden}>
-        <div className={styles.modal}>
-            <p>{suggestion}</p>
+        <div className={styles.modal} style={{"--color": color}}>
+            <h3 className={styles.subtitle}>{suggestion}</h3>
             <button onClick={() => onAction()}>Ok</button>
         </div>
     </div>

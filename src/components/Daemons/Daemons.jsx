@@ -5,17 +5,17 @@ const options = [
     {
         title: "Editor",
         description: "a strict academic who is evaluating punctuation, grammar, and style",
-        color: "#ffaaaa"
+        color: "#2F80ED"
     },
     {
         title: "Mom",
         description: "a kind and friendly mom who is empathetic and concerned",
-        color: "#aaffaa"
+        color: "#9B51E0"
     },
     {
         title: "Friend",
         description: "a childish friend who only wants the best for you",
-        color: "#aaaaff"
+        color: "#F2994A"
     },
 ]
 function Daemons({onSelect}) {

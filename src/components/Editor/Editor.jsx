@@ -43,7 +43,8 @@ export default function Editor() {
     <div className={styles.container}>
       <div className={styles.wrapper}>
       <p className={styles.text}>{loading ? textParts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>) : text}</p>
-      <Modal data={edits} visible={isHovered} onAction={() => setIsHovered(false)} markRef={markRef}/>
+      {activeDaemon && <Modal data={edits} visible={isHovered} onAction={() => setIsHovered(false)} markRef={markRef} color={activeDaemon.color}/>
+}
     </div>
     <Daemons onSelect={setActiveDaemon}></Daemons>
     </div>

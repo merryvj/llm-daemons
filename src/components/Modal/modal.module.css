@@ -1,13 +1,13 @@
-.wrapper {
-    position: absolute,
-}
 
 .modal {
     width: 20rem;
     padding: 1rem;
-    border: solid 1px grey;
+    border: solid 1px var(--color);
     border-radius: 8px;
     background-color: white;
+    box-shadow: var(--box-shadow-sm);
+    color: var(--color);
+    font-weight: 600;
 }
 
 .visible,
@@ -31,4 +31,18 @@
   margin-top: -10000px;
   transition: margin-top 0s 1s;
 }
-  
+
+.subtitle {
+    font-size: 16px;
+}
+
+/* .subtitle:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    display: block;
+    height: 10px;
+    width: 10px;
+    background-color: var(--color);
+} */
