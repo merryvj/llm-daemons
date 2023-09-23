@@ -49,6 +49,11 @@ export default function Editor() {
     setText(e.target.innerText)
   }, [])
 
+  const changeDaemon = (selectedDaemon) => {
+    setActiveDaemon(selectedDaemon);
+    setIsHovered(false);
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -56,7 +61,7 @@ export default function Editor() {
       {activeDaemon && <Modal data={edits} visible={isHovered} onAction={() => setIsHovered(false)} markRef={markRef} daemon={activeDaemon}/>
 }
     </div>
-    <Daemons onSelect={setActiveDaemon}></Daemons>
+    <Daemons onSelect={changeDaemon}></Daemons>
     </div>
   )
 }

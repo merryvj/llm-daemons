@@ -33,8 +33,7 @@ const useAI = (text, activeDaemon) => {
     const [data, setData] = useState("boop");
 
     useEffect(() => {
-        if (loading | !activeDaemon) return;
-
+        if (!activeDaemon) return;
         const callModel = async() => {
               const input = await prompt.format({
                 text: text,
