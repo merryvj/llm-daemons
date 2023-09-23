@@ -34,7 +34,6 @@ const useAI = (text, activeDaemon) => {
 
     useEffect(() => {
         if (loading | !activeDaemon) return;
-        setLoading(true);
 
         const callModel = async() => {
               const input = await prompt.format({
@@ -59,6 +58,7 @@ const useAI = (text, activeDaemon) => {
         }
 
         callModel();
+        setLoading(true);
 
     }, [text, activeDaemon])
 

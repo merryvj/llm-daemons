@@ -5,9 +5,8 @@ import { escapeRegExp } from 'lodash';
 import Modal from '../Modal/Modal';
 import Daemons from '../Daemons/Daemons';
 
-
 export default function Editor() {
-  const [text, setText] = useState("Placeholder text");
+  const [text, setText] = useState("");
   const [textParts, setTextParts] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
   const [activeDaemon, setActiveDaemon] = useState(null);
@@ -53,7 +52,7 @@ export default function Editor() {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-      <div contentEditable='true' className={styles.text} onBlur={handleBlur} onPaste={handlePaste}> {loading ? textParts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>) : text}</div>
+      <div contentEditable='true' className={styles.text} onBlur={handleBlur} onPaste={handlePaste}> {textParts.length > 1 ? textParts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>) : text}</div>
       {activeDaemon && <Modal data={edits} visible={isHovered} onAction={() => setIsHovered(false)} markRef={markRef} daemon={activeDaemon}/>
 }
     </div>
