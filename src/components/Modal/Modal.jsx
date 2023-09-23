@@ -18,13 +18,13 @@ export default function Modal({data, visible, onAction, markRef, daemon}) {
         top: 0,
         left: 0,
         position: 'absolute',
-        transform: 'translate(40%, 50%)'
+        transform: 'translateX(6rem)'
     };
 
     if (markRef.current) {
         console.log(markRef.current.getBoundingClientRect())
         const markPosition = markRef.current.getBoundingClientRect();
-        modalStyle.top = markPosition.top + 'px';
+        modalStyle.top = markPosition.top - 24 + 'px';
         modalStyle.left = markPosition.left + 'px';
     }
 

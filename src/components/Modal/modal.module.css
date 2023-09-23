@@ -1,6 +1,6 @@
 
 .modal {
-    width: 20rem;
+    width: 24rem;
     padding: 1rem;
     border: solid 1.5px var(--color);
     border-radius: 8px;
@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    font-family: 'Inclusive Sans', sans-serif;
 }
 
 .visible,
@@ -34,15 +35,20 @@
 }
 
 .subtitle {
-    font-size: 16px;
+    font-size: 18px;
+    margin-top: 4px;
     color: var(--color);
-    font-weight: bold;
 }
 
 .suggestion {
-    
+    color: #353534;
+    font-size: 18px;
+    line-height: 140%;
 }
 
+.actions {
+    margin-top: 4px;
+}
 .actions > button {
     padding: 6px 12px;
     border: solid 1.5px #E9E9E7;
