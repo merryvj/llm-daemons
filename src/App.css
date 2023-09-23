@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap');
 
-:root {
-  --box-shadow-sm: 0.2px 0.2px 0.8px -10px rgba(40,10,0,0.014), 0.4px 0.4px 2px -10px rgba(40,10,0,0.02), 0.8px 0.8px 3.8px -10px rgba(40,10,0,0.025), 1.3px 1.3px 6.7px -10px rgba(40,10,0,0.03), 2.5px 2.5px 12.5px -10px rgba(40,10,0,0.036), 6px 6px 30px -10px rgba(40,10,0,0.05)
-}
 
 .App {
   height: 100vh;
@@ -14,15 +11,23 @@
   font-family: 'Inclusive Sans', sans-serif;
 }
 
-mark {
-  background-color: rgba(var(--markColor), 0.25);
-  transition: 0.4s;
-}
-
-mark:hover{
-  background-color: rgba(var(--markColor), 0.4);
+.highlight {
+  animation: highlight 2s ease-in-out;
+  background-image: linear-gradient(rgba(var(--markColor), 0.25), rgba(var(--markColor), 0.25));
+  background-repeat: no-repeat;
 }
 
 *::selection {
-  background: #e6e36e;
+  background: #e6e26e9a;
+}
+
+@keyframes highlight {
+  0% {
+    background-size: 0% 100%;
+  }
+
+  100% {
+    background-size: 100% 100%;
+  }
+
 }

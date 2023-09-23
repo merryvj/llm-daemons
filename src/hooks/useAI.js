@@ -59,7 +59,7 @@ const useAI = (text, activeDaemon) => {
         callModel();
         setLoading(true);
 
-    }, [text, activeDaemon])
+    }, [activeDaemon])
 
     return [data, loading]
 }

@@ -33,6 +33,7 @@
     backdrop-filter: blur(5px);
     -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent);
     mask-image: linear-gradient(to bottom, #000 25%, transparent);
+    pointer-events: none;
 }
 
 .wrapper:after {
@@ -46,6 +47,7 @@
     backdrop-filter: blur(5px);
     -webkit-mask-image: linear-gradient(to top, #000 50%, transparent);
     mask-image: linear-gradient(to top, #000 25%, transparent);
+    pointer-events: none;
 }
 
 /* 

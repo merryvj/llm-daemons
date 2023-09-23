@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 import Daemons from '../Daemons/Daemons';
 
 export default function Editor() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState("Type something to analyze...");
   const [textParts, setTextParts] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
   const [activeDaemon, setActiveDaemon] = useState(null);
@@ -25,12 +25,13 @@ export default function Editor() {
     const editedText = parts.map((part, i) => (
       i < parts.length - 1 ? 
       <React.Fragment key={i}>{part}
-        <mark 
+        <span 
           ref={markRef}
+          className='highlight'
           onMouseEnter={() => setIsHovered(true)}
           style={{'--markColor': activeDaemon.color}}
           // style={{backgroundColor: `rgb(${activeDaemon.color}, 0.3)`}}
-      >{matchingSection}</mark>
+      >{matchingSection}</span>
       </React.Fragment> : 
       part
     ));
