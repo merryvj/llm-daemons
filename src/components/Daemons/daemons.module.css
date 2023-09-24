@@ -11,15 +11,19 @@
 .option {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .icon {
-    height: 24px;
-    width: 24px;
-    background-color: aquamarine;
+    height: 32px;
+    width: 32px;
+    background-color: rgba(var(--color), 0.8);
     border-radius: 100%;
     transition: 0.2s all;
+}
+
+.option:hover > .icon {
+    background-color: rgba(var(--color), 1);
 }
 
 .option:hover > .label {
@@ -35,9 +39,16 @@
     display: block;
     opacity: 0;
     transform: scale(0.9);
+    font-size: 18px;
     transition: 0.2s all;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: bold;
     
+}
+
+.face {
+    width: inherit;
+    height: inherit;
+    position: relative;
 }
