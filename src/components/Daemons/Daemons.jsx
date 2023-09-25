@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from './daemons.module.css'
 
 const options = [
@@ -21,23 +21,32 @@ const options = [
         color: "242, 153, 74",
     },
 ]
-function Daemons({onSelect}) {
+function Daemons({onSelect, loading}) {
     const [active, setActive] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
+    useEffect(() => {
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 4100);
+    }, [loading])
+    
     const handleClick = (option) => {
-        onSelect(option)
+        onSelect(option);
+        setActive(option);
     }
 
   return (
     <div className={styles.wrapper}>
         {options.map((option, i) => (
             <div key={i} className={styles.option} onClick={() => handleClick(option)}>
-                <div className={styles.icon} style={{"--color": option.color}}>
+                <div className={styles.icon} style={{"--color": option.color}} data-loading={option === active && isLoading}>
                     <div className={styles.face}>
                         <svg viewBox="0 0 100 100">
                             <circle cx="30" cy="40" r="7" />
                             <circle cx="70" cy="40" r="7" />
-                            <path d="M 35 62 C 40 70, 60 70, 65 62" stroke="black" strokeWidth={10} strokeLinecap='round' fill="transparent"/>
+                            <path d="M 35 62 C 40 70, 60 70, 65 62" strokeWidth={10} strokeLinecap='round' fill="transparent"/>
 
                         </svg>
                     </div>

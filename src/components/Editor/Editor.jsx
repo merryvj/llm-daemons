@@ -62,7 +62,7 @@ export default function Editor() {
       {activeDaemon && <Modal data={edits} visible={isHovered} onAction={() => setIsHovered(false)} markRef={markRef} daemon={activeDaemon}/>
 }
     </div>
-    <Daemons onSelect={changeDaemon}></Daemons>
+    <Daemons onSelect={changeDaemon} loading={loading}></Daemons>
     </div>
   )
 }
