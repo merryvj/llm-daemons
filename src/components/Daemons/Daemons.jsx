@@ -5,22 +5,23 @@ const options = [
     {
         title: "Editor",
         subtitle: "Suggestions",
-        description: "a strict academic who is evaluating punctuation, grammar, and style",
+        description: "A strict writing editor evaluating grammar, punctuation, clarity",
         color: "47, 128, 237",
     },
     {
-        title: "Mom",
+        title: "Parent",
         subtitle: "Impressions",
-        description: "a kind and friendly mom who is empathetic and concerned",
+        description: "As if you an empathetic parent, suggest a line that makes you the most concerned",
         color: "151, 81, 224",
     },
     {
-        title: "Friend",
+        title: "Devil",
         subtitle: "Reactions",
-        description: "a childish friend who only wants the best for you",
+        description: "As if you are a devil's advocate, find a line from the text and suggest how it might not be true",
         color: "242, 153, 74",
     },
 ]
+
 function Daemons({onSelect, loading}) {
     const [active, setActive] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +32,7 @@ function Daemons({onSelect, loading}) {
             setIsLoading(false);
         }, 4100);
     }, [loading])
-    
+
     const handleClick = (option) => {
         onSelect(option);
         setActive(option);
