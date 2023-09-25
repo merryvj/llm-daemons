@@ -39,7 +39,7 @@ export default function Editor() {
 
   }, [edits])
 
-
+  
   const handlePaste = (e) => {
     e.preventDefault();
     const plain = e.clipboardData.getData('text/plain');

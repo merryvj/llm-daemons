@@ -10,12 +10,13 @@ import { StructuredOutputParser, OutputFixingParser } from "langchain/output_par
 const parser = StructuredOutputParser.fromZodSchema(
     z.object({
       line: z.string().describe("a selected line that needs the most edits"),
-      suggestions: z.string().describe("the reader's suggestions based on the line in, written in the style of the reader"),
+      suggestions: z.string().describe("editing suggestions based on the selected line"),
     })
   );
 
 
 const model = new OpenAI({temperature: 0.5,
+  modelName: 'gpt-3.5-turbo',
   openAIApiKey: "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",
   cache: true});  
 
