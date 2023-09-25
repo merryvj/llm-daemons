@@ -57,7 +57,7 @@
     overflow: scroll;
     padding: 12px;
     -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent);
-    padding-bottom: 28px;
+    padding-bottom: 24px;
 }
 
 .suggestion > p::-webkit-scrollbar {
@@ -70,9 +70,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 999px;
-    background-color: white;
     border: solid 1.5px #E9E9E7;
     overflow: hidden;
+    background-color: white;
 }
 
 button {
@@ -80,8 +80,9 @@ button {
     padding: 6px 14px 4px 14px;
     color: #8E8F94;
     font-weight: bold;
-    transition: 0.2s;
+    transition: 0.2s all;
     background: none;
+    background-color: white;
     border-right: solid 1.5px #E9E9E7;
 }
 

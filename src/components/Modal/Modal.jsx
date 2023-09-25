@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState, useRef } from 'react'
 import styles from './modal.module.css';
 
 export default function Modal({data, visible, onAction, markRef, daemon}) {
-
     const [isVisible, setIsVisible] = useState(visible);
     const [suggestion, setSuggestion] = useState("");
+    const modalRef = useRef(null);
     
     useEffect(() => {
         setSuggestion(data.suggestions);
@@ -16,22 +16,30 @@ export default function Modal({data, visible, onAction, markRef, daemon}) {
 
     const modalStyle = {
         top: 0,
-        left: 0,
+        left: '50%',
         position: 'absolute',
-        transform: 'translateX(6rem)'
+        transform: 'translateX(-50%)'
     };
 
-    if (markRef.current) {
-        console.log(markRef.current.getBoundingClientRect())
+    if (markRef.current && modalRef.current) {
         const markPosition = markRef.current.getBoundingClientRect();
-        modalStyle.top = markPosition.top - 24 + 'px';
-        modalStyle.left = markPosition.left + 'px';
+        const {top, bottom} = markPosition;
+        const {height} = modalRef.current.getBoundingClientRect();
+        
+        modalStyle.top = markPosition.bottom + 40 + 'px';
+
+        //position modal above mark
+        if (window.innerHeight - bottom < 300) {
+            modalStyle.top = top - (1.5 * height) - 24 + 'px';
+        }
+
     }
+
 
   return (
     <div style={modalStyle}>
         <div className={isVisible ? styles.visible : styles.hidden}>
-        <div className={styles.modal} style={{"--color": `rgb(${daemon.color})`}}>
+        <div className={styles.modal} style={{"--color": `rgb(${daemon.color})`}} ref={modalRef}>
             <h3 className={styles.subtitle}>{daemon.subtitle}</h3>
             <div className={styles.suggestion}>
                 <p> {suggestion} </p>

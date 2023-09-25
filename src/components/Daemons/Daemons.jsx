@@ -5,7 +5,7 @@ const options = [
     {
         title: "Editor",
         subtitle: "Suggestions",
-        description: "A strict writing editor evaluating grammar, punctuation, clarity",
+        description: "A strict writing editor, suggest a weak line that can be improved for clarity, grammar, punctuation",
         color: "47, 128, 237",
     },
     {
