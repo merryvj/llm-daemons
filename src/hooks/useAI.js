@@ -17,7 +17,6 @@ const parser = StructuredOutputParser.fromZodSchema(
 
 const model = new OpenAI({temperature: 0.5,
   modelName: 'gpt-3.5-turbo',
-  openAIApiKey: "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",
   cache: true});  
 
 const getPrompt = async (text, activeDaemon) => {
@@ -56,7 +55,6 @@ const useAI = (text, activeDaemon) => {
               console.log(e);
                 const fixParser = OutputFixingParser.fromLLM(
                     new OpenAI({temperature: 0,
-                        openAIApiKey: "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",
                         cache: true})
                 )
 
